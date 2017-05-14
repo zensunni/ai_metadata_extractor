@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Image;
+use Request;
 
+use App\Image;
+use App\Services\GoogleCloudVision;
 
 class ImagesController extends Controller
 {
     public function index()
     {
       $images = Image::all();
-      return view('images/index', compact('images'));
+
+			if (Request::wantsJson())
+			{
+				return $images;
+			}
+			else 
+			{
+      	return view('images/index', compact('images'));
+			}
     }
 
     public function show(Image $image)
@@ -26,12 +35,23 @@ class ImagesController extends Controller
 
     public function store()
     {
-			Image::create([
-				'url' => request('url')
+			$this->validate(request(), [
+				'url' => 'required'
 			]);
-			//$post = new Image;
-			//$post->url = request('url');
-			//$post->save();
+
+			$vision = resolve('App\Services\GoogleCloudVision');
+			$metadata = $vision->extract_metadata(request('url'));
+
+			Image::create([
+				'url' => request('url'),
+				'extracted_metadata' => $metadata
+			]);
 			return redirect('/images');
     }
+
+		public function destroy(Image $image)
+		{
+			$image->delete();
+			return redirect('/images');
+		}
 }

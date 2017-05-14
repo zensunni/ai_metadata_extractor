@@ -14,6 +14,10 @@ return [
     |
     */
 
+    'google_cloud_vision' => [
+        'key' => env('GOOGLE_CLOUD_VISION_KEY')
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

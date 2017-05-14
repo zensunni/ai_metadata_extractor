@@ -7,8 +7,7 @@
         APIs Utilized
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="#">Google Computer Vision</a>
-        <a class="dropdown-item" href="#">Clarifai</a>
+        <a class="dropdown-item" href="https://cloud.google.com/vision">Google Computer Vision</a>
       </div>
     </li>
   </ul>

@@ -1,3 +1,3 @@
 ## About Metadata extractor
 
-This tool is a rest server for extracting metadata from files using various computer vision APIs.
+This tool is a REST API for extracting metadata from files using various computer vision APIs.

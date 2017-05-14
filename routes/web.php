@@ -11,8 +11,6 @@
 |
 */
 
-use App\Image;
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -21,4 +19,10 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
+// UI routes
 Route::get('/images', 'ImagesController@index');
+Route::get('/images/create', 'ImagesController@create');
+Route::get('/images/{image}', 'ImagesController@show');
+
+Route::post('/images', 'ImagesController@store');
